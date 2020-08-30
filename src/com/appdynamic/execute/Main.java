@@ -10,8 +10,19 @@ public class Main {
 		System.out.println(jsonString);*/
 		APIService.app_name = "5916";
 		APIService api = new APIService();
-		System.out.println(APIService.app_name);
+		
+		System.out.println("Application details");
 		api.getData("JSON", api.applications_url);
+		System.out.println("*******************************************************************************");
+		System.out.println("Application business transactions");
 		api.getData("JSON", api.application_businesst_url);
+		System.out.println("*******************************************************************************");
+		System.out.println("Application tiers");
+		api.getData("JSON", api.application_tiers_url);
+		System.out.println("*******************************************************************************");
+		System.out.println("Application backend");
+		api.getData("JSON", api.application_backend_url);
+
+
 	}
 }

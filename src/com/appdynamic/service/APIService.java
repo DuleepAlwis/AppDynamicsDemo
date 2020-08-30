@@ -12,10 +12,8 @@ import java.net.URL;
 import java.net.URISyntaxException;
 import java.util.Base64;
 
-import com.appdynamic.adapterImpl.JSONAdapter;
-import com.appdynamic.adapterImpl.XMLAdapter;
-import com.appdynamics.adapter.AdapterRun;
-import com.appdynamics.adapter.AdapterType;
+
+
 
 public class APIService{
 
@@ -27,19 +25,19 @@ public class APIService{
 	
 	public static String app_name = "";
 	
-	//URL to access all the Business Applications
+	//Rest end point to access all the Business Applications
 	public String applications_url = "/controller/rest/applications";
 	
-	// Retrieve All Business Transactions in a Business Application
+	//Rest end point Retrieve All Business Transactions in a Business Application
 	public String application_businesst_url = "/controller/rest/applications/"+app_name+"/business-transactions";
 
-	// Retrieve All Tiers in a Business Application
+	//Rest end point Retrieve All Tiers in a Business Application
 	public String application_tiers_url = "/controller/rest/applications/"+app_name+"/tiers";
 
-	//Retrieve All Registered Backends in a Business Application With Their Properties
+	//Rest end point Retrieve All Registered Backends in a Business Application With Their Properties
 	public String application_backend_url = "/controller/rest/applications/"+app_name+"/backends";
 
-	//Retrieve Node Information for All Nodes in a Business Application
+	//Rest end point Retrieve Node Information for All Nodes in a Business Application
 	public String application_nodes_url = "/controller/rest/applications/"+app_name+"/nodes";
 
 
@@ -64,14 +62,14 @@ public class APIService{
 			
 			if(xml.equalsIgnoreCase(type)==true) {
 				
-				path = "/controller/rest/applications?output";
+				
 				
 				sb = URL + path;
-				URL obj = new URL(sb.toString());
+				URL obj = new URL(sb);
 	            String encoding = Base64.getEncoder().encodeToString((USER_NAME+":"+PASSWORD).getBytes("UTF-8"));
 	            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
 	            connection.setRequestMethod("GET");
-	            connection.setDoOutput(true);
+	            //connection.setDoOutput(true);
 	            connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 	            InputStream content = (InputStream)connection.getInputStream();
 	            BufferedReader in   =  new BufferedReader (new InputStreamReader (content));
@@ -87,7 +85,7 @@ public class APIService{
 				path = path + "?output=JSON";
 				
 				sb = URL + path;
-				URL obj = new URL(sb.toString());
+				URL obj = new URL(sb);
 	            String encoding = Base64.getEncoder().encodeToString((USER_NAME+":"+PASSWORD).getBytes("UTF-8"));
 	            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
 	            connection.setRequestMethod("GET");
